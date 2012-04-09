@@ -16,11 +16,11 @@ if (elgg_instanceof($wall_owner) && $wall_owner->guid != $subject->guid && $wall
 	$by = elgg_view('output/url', array(
 		'text' => $subject->name,
 		'href' => $subject->getURL()
-	));
+			));
 	$on = elgg_view('output/url', array(
 		'text' => $wall_owner->name,
 		'href' => $wall_owner->getURL()
-	));
+			));
 	$prefix = elgg_echo('hj:wall:new:wall:post', array($by, $on));
 }
 
@@ -30,9 +30,9 @@ if (!$attachment = get_entity($object->attachment)) {
 	$body .= '<div class="elgg-content">' . $object->attachment . '</div>';
 } else {
 	$body .= '<div class="elgg-content">' . elgg_view_entity($attachment, array(
-		'full_view' => false,
-		'icon_size' => 'master'
-	));
+				'full_view' => false,
+				'icon_size' => 'master'
+			));
 }
 
 $body .= elgg_view_comments($object);
@@ -42,7 +42,7 @@ $metadata = elgg_view_menu('hjentityhead', array(
 	'handler' => 'hjwall',
 	'sort_by' => 'priority',
 	'class' => 'elgg-menu-hz',
-		'has_full_view' => false,
+	'has_full_view' => false,
 		));
 
 if (elgg_in_context('widgets')) {
@@ -55,7 +55,6 @@ $params = array(
 	'metadata' => $metadata,
 	'subtitle' => $summary,
 	'content' => $body,
-
 );
 $params = $params + $vars;
 $content = elgg_view('object/elements/summary', $params);
