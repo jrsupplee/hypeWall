@@ -58,7 +58,13 @@
 	border-radius:0;
 	border:0;
 	height:50px;
-	border-bottom:1px solid #e8e8e8;
+
+	-moz-box-shadow:0;
+	-webkit-box-shadow:0;
+	box-shadow:0;
+
+	width:98%;
+	padding:1%;
 }
 
 #hj-wall input[type="text"]
@@ -80,6 +86,10 @@
 	margin:0;
 }
 
+#hj-wall input[type="submit"]
+{
+	margin:0;
+}
 .hj-wall-form-attachment {
 	border-top:1px dashed #e8e8e8;
 }
