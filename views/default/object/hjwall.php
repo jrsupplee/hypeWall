@@ -42,6 +42,7 @@ $metadata = elgg_view_menu('hjentityhead', array(
 	'handler' => 'hjwall',
 	'sort_by' => 'priority',
 	'class' => 'elgg-menu-hz',
+		'has_full_view' => false,
 		));
 
 if (elgg_in_context('widgets')) {

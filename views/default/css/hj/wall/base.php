@@ -74,8 +74,14 @@
 	border-radius:0;
 	border:0;
 
+	-moz-box-shadow:0;
+	-webkit-box-shadow:0;
+	box-shadow:0;
+
+	width:98%;
+	padding:1%;
+
 	color:#666;
-	padding:4px;
 	margin:0;
 	border-top:1px dashed #e8e8e8;
 

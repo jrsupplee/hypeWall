@@ -3,6 +3,7 @@
 $english = array(
 
 	'hj:wall' => 'Wall',
+	'item:object:hjwall' => 'Wall post',
 	'hj:wall:write' => 'Post on the wall',
 	'hj:wall:tag:friends' => 'Tag friends',
 	'hj:wall:status:placeholder' => 'What\'s on your mind?',
@@ -38,6 +39,8 @@ $english = array(
 	'hj:wall:file:placeholder' => 'Tell something about this file',
 
 	'hj:wall:filehasntuploaded' => 'Please wait for the file to upload',
+
+	'hj:wall:tagged:rel' => '%s was tagged in %s\'s %s',
 	
 
 );
