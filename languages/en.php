@@ -41,6 +41,8 @@ $english = array(
 	'hj:wall:filehasntuploaded' => 'Please wait for the file to upload',
 
 	'hj:wall:tagged:rel' => '%s was tagged in %s\'s %s',
+
+	'hj:wall:widget:description' => 'User wall widget',
 	
 
 );

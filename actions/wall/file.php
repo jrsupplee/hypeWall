@@ -39,7 +39,7 @@ if ($wall->save()) {
 			$subject = elgg_echo('hj:wall:tagged:notification:subject', array($user->name));
 			$message = elgg_echo('hj:wall:tagged:notification:message', array(
 				$user->name,
-				elgg_view_entity($wall, array('full_view' => false)),
+				$wall->description,
 				$wall->getURL()
 			));
 
