@@ -32,7 +32,7 @@ if (!$attachment = get_entity($object->attachment)) {
 	$body .= '<div class="elgg-content">' . elgg_view_entity($attachment, array(
 				'full_view' => false,
 				'icon_size' => 'master'
-			));
+			)) . '</div>';
 }
 
 $body .= elgg_view_comments($object);

@@ -175,7 +175,7 @@ ul.hj-wall-bar-controls > li
 
 .elgg-module-widget .hj-list-wall img,
 .elgg-module-widget #hj-wall img {
-	max-width:250px;
+	max-width:90%;
 }
 
 

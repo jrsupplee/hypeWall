@@ -35,7 +35,7 @@ if (!$attachment = get_entity($object->attachment)) {
 		'full_view' => false,
 		'icon_only' => true,
 		'icon_size' => 'master'
-	));
+	)) . '</div>';
 }
 
 echo elgg_view('river/item', array(

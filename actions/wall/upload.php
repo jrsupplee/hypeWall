@@ -44,7 +44,7 @@ if (!empty($file['name'])) {
 	$filehandler->setFilename($prefix . $filestorename);
 	$filehandler->setMimeType($file['type']);
 	$filehandler->originalfilename = $file['name'];
-	$filehandler->simpletype = file_get_simple_type($file['type']);
+	$filehandler->simpletype = hj_framework_get_simple_type($file['type']);
 	$filehandler->filesize = round($file['size'] / (1024 * 1024), 2) . "Mb";
 
 	$filehandler->open("write");
@@ -56,24 +56,10 @@ if (!empty($file['name'])) {
 	hj_framework_set_entity_priority($filehandler);
 
 	if ($file_guid && $filehandler->simpletype == "image") {
+		$thumb_sizes = hj_framework_get_thumb_sizes('hjwall');
 
-		$thumb_sizes = array(
-			'tiny' => 16,
-			'small' => 25,
-			'medium' => 40,
-			'large' => 100,
-			'preview' => 250,
-			'master' => 500,
-			'full' => 1024,
-		);
-
-		$thumb_sizes = elgg_trigger_plugin_hook('hj:framework:form:iconsizes', 'file', array('entity' => $formSubmission, 'field' => $field), $thumb_sizes);
 		foreach ($thumb_sizes as $thumb_type => $thumb_size) {
-			$square = false;
-			if (in_array($thumb_type, array('tiny', 'small', 'medium', 'large'))) {
-				$square = true;
-			}
-			$thumbnail = get_resized_image_from_existing_file($filehandler->getFilenameOnFilestore(), $thumb_size, $thumb_size, $square, 0, 0, 0, 0, true);
+			$thumbnail = get_resized_image_from_existing_file($filehandler->getFilenameOnFilestore(), $thumb_size['w'], $thumb_size['h'], $thumb_size['square'], 0, 0, 0, 0, true);
 			if ($thumbnail) {
 				$thumb = new ElggFile();
 				$thumb->setMimeType($file['type']);
@@ -93,7 +79,7 @@ if (!empty($file['name'])) {
 	$html = elgg_view_entity($filehandler, array(
 		'icon_size' => 'master',
 		'full_view' => false
-	));
+			));
 	$html .= elgg_view('input/hidden', array(
 		'name' => 'attachment',
 		'value' => $filehandler->getGUID()
