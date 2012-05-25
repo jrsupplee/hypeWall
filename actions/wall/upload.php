@@ -34,7 +34,7 @@ if (!empty($file['name'])) {
 	$filehandler->container_guid = $filefolder->getGUID();
 	$filehandler->access_id = $filefolder->access_id;
 	$filehandler->data_pattern = hj_framework_get_data_pattern('object', 'hjfile');
-	$filehandler->title = elgg_echo('hj:wall:upload');
+	$filehandler->title = $file['name'];
 	$filehandler->description = '';
 
 	$prefix = "hjfile/";

@@ -38,7 +38,7 @@ $wall_owner = elgg_view('input/hidden', array(
 ));
 
 $button = elgg_view('input/submit', array(
-	'value' => elgg_echo('share'),
+	'value' => elgg_echo('hj:wall:button:share'),
 	'class' => 'hidden'
 		));
 

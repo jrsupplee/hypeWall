@@ -6,15 +6,19 @@ Release of this plugin available at elgg.org might not always correspond to the 
 
 PLUGIN DESCRIPTION
 ------------------
+hypeWall mimics Google+/Facebook wall functionality, whereas users can update their status and/or share links, photos and other embeddable content.
+
+hypeWall parses URLs and tries to distinguish whether the content is an image, embeddable content (oEmbed) or other. It automagically creates an html-markup of the attachment.
 
 
 REQUIREMENTS
 ------------
-1) Elgg 1.8.3+
+1) Elgg 1.8.5+
 2) hypeFramework 1.8.6+
 
 INTEGRATION / COMPATIBILITY
 ---------------------------
+- Reqires hypeFramework and hypeAlive
 
 INSTALLATION
 ------------

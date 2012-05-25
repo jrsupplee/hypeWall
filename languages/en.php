@@ -4,6 +4,8 @@ $english = array(
 
 	'hj:wall' => 'Wall',
 	'item:object:hjwall' => 'Wall post',
+	'items:object:hjwall' => 'Wall posts',
+	'hj:wall:button:share' => 'Share',
 	'hj:wall:write' => 'Post on the wall',
 	'hj:wall:tag:friends' => 'Tag friends',
 	'hj:wall:status:placeholder' => 'What\'s on your mind?',
@@ -43,6 +45,7 @@ $english = array(
 	'hj:wall:tagged:rel' => '%s was tagged in %s\'s %s',
 
 	'hj:wall:widget:description' => 'User wall widget',
+	'river:create:object:hjwall' => '%s added a new wall post',
 	
 
 );
