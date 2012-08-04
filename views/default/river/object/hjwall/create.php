@@ -29,13 +29,27 @@ if (elgg_instanceof($wall_owner) && $wall_owner->guid != $subject->guid && $wall
 $summary = parse_urls($prefix . $object->description . $extras);
 
 if (!$attachment = get_entity($object->attachment)) {
-	$att_str = '<div class="elgg-content">' . $object->attachment . '</div>';
+	$att_str = $object->attachment;
 } else {
-	$att_str = '<div class="elgg-content">' . elgg_view_entity($attachment, array(
+	$att_str = elgg_view_entity($attachment, array(
 		'full_view' => false,
 		'icon_only' => true,
 		'icon_size' => 'master'
-	)) . '</div>';
+	));
+}
+
+$attachments = elgg_get_entities_from_relationship(array(
+	'relationship' => 'wall_attachment',
+	'relationship_guid' => $object,
+	'full_view' => false,
+	'limit' => 0
+));
+
+if ($attachments) {
+	$att_str .= elgg_view_entity_list($attachments, array(
+		'list_class' => 'hj-wall-attachments-list',
+		'item_class' => 'hj-wall-attachment'
+	));
 }
 
 echo elgg_view('river/item', array(

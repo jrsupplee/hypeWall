@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 #hj-wall {
 	margin:20px 0;
 	padding:10px;
@@ -15,6 +11,7 @@
 
 #hj-wall .elgg-tabs {
 	border-bottom:0;
+	margin:0 0 10px;
 }
 
 #hj-wall .elgg-tabs > li {
@@ -25,15 +22,24 @@
 	border-radius:0;
 
 	padding:0;
-	margin:0 10px 0 0;
+	margin:0 2px 0 0;
 
-	background:none;
+	background:#F8F8F8;
+	border:1px solid #E8E8E8;
+
+	color:#666;
+}
+
+#hj-wall .elgg-tabs > li:hover {
+	background:#E8E8E8
+	color:#666;
+	cursor:pointer;
 }
 
 #hj-wall .elgg-tabs > li > a,
 #hj-wall .elgg-tabs > li > a:hover {
-	background:none;
-	line-height:20px;
+	padding:3px 7px;
+	color:#666;
 }
 
 
@@ -49,6 +55,7 @@
 	border:1px solid #e8e8e8;
 	padding:0;
 	margin:0;
+	overflow:hidden;
 }
 
 #hj-wall textarea
@@ -100,10 +107,16 @@
 	border-top:1px dashed #e8e8e8;
 }
 
+.hj-wall-form-attachment img {
+	width:100%;
+	border:0;
+	padding:0;
+}
+
 .hj-wall-form-bar {
 	padding:0 5px;
-	border-top:1px solid #e8e8e;
-	border-bottom:1px solid #e8e8e;
+	border-top:1px solid #e8e8e8;
+	border-bottom:1px solid #e8e8e8;
 	background:#f8f8f8;
 }
 
@@ -178,21 +191,22 @@ ul.hj-wall-bar-controls > li
 	max-width:90%;
 }
 
+.elgg-river-attachments img.elgg-photo-attachment,
+li.hj-wall-attachment img.elgg-photo-attachment {
+	width:100%;
+	border:0;
+	padding:0;
+	background-color:none;
+}
 
-/* jQuery UI Tabs 1.8.18
- *
- * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Tabs#theming
- */
-.ui-tabs { position: relative; padding: .2em; zoom: 1; } /* position: relative prevents IE scroll bug (element with position: relative inside container with overflow: auto appear as "fixed") */
-.ui-tabs .ui-tabs-nav { margin: 0; padding: .2em .2em 0; }
-.ui-tabs .ui-tabs-nav li { list-style: none; float: left; position: relative; top: 1px; margin: 0 .2em 1px 0; padding: 0; white-space: nowrap; }
-.ui-tabs .ui-tabs-nav li a { float: left; padding: .5em 1em; text-decoration: none; }
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected { margin-bottom: 0; padding-bottom: 1px; font-weight:bold; }
-.ui-tabs .ui-tabs-nav li.ui-tabs-selected a, .ui-tabs .ui-tabs-nav li.ui-state-disabled a, .ui-tabs .ui-tabs-nav li.ui-state-processing a { cursor: text; }
-.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a { cursor: pointer; } /* first selector in group seems obsolete, but required to overcome bug in Opera applying cursor: text overall if defined elsewhere... */
-.ui-tabs .ui-tabs-panel { display: block; background: none; }
-.ui-tabs .ui-tabs-hide { display: none !important; }
+li.hj-wall-attachment {
+	border: 1px solid <?php echo $vars['hj_pallette_accessory'] ?>;
+	padding:5px;
+}
+
+#hj-wall .ui-widget-header {
+	border:0;
+	background:none;
+	color:none;
+	font-weight:normal;
+}

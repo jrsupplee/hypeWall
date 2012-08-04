@@ -33,13 +33,15 @@ function hj_wall_init() {
 
 	elgg_register_js('jquery.oembed', 'mod/hypeWall/vendors/jquery.oembed/jquery.oembed.js');
 
-	elgg_load_js('jquery.oembed');
-	elgg_load_js('hj.wall.oembed_init');
-
 	$css = elgg_get_simplecache_url('css', 'hj/wall/base');
 	elgg_register_css('hj.wall.base', $css);
-
 	elgg_register_css('jquery.oembed', 'mod/hypeWall/vendors/jquery.oembed/jquery.oembed.css');
+
+	elgg_load_js('jquery.oembed');
+	elgg_load_js('hj.wall.oembed_init');
+	elgg_load_css('hj.wall.base');
+	elgg_load_css('jquery.oembed');
+	elgg_load_css('hj.framework.jquitheme');
 
 	elgg_register_action('wall/status', $shortcuts['actions'] . 'wall/status.php');
 	elgg_register_action('wall/post', $shortcuts['actions'] . 'wall/post.php');
@@ -56,8 +58,12 @@ function hj_wall_init() {
 
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'hj_wall_owner_block_menu');
 	elgg_register_plugin_hook_handler('register', 'menu:user_hover', 'hj_wall_user_hover_menu');
+	elgg_register_plugin_hook_handler('register', 'menu:hjentityhead', 'hj_wall_entity_head_menu');
 
-	elgg_register_widget_type('wall', elgg_echo('hj:wall'), elgg_echo('hj:wall:widget:description'));
+	// @todo figure out the views
+	//elgg_register_widget_type('wall', elgg_echo('hj:wall'), elgg_echo('hj:wall:widget:description'));
+
+	elgg_register_event_handler('delete', 'object', 'hj_wall_delete_wall_with_file');
 }
 
 function hj_wall_url_handler($entity) {
@@ -116,6 +122,10 @@ function hj_wall_owner_edit_permissions($hook, $type, $return, $params) {
 
 function hj_wall_owner_block_menu($hook, $type, $return, $params) {
 
+	if (!elgg_is_logged_in()) {
+		return $return;
+	}
+
 	if (elgg_instanceof($params['entity'], 'user')) {
 		$menu_item = array(
 			'name' => 'wall',
@@ -129,6 +139,11 @@ function hj_wall_owner_block_menu($hook, $type, $return, $params) {
 }
 
 function hj_wall_user_hover_menu($hook, $type, $return, $params) {
+
+	if (!elgg_is_logged_in()) {
+		return $return;
+	}
+
 	if (elgg_instanceof($params['entity'], 'user')) {
 		$menu_item = array(
 			'name' => 'wall',
@@ -137,5 +152,42 @@ function hj_wall_user_hover_menu($hook, $type, $return, $params) {
 		);
 		$return[] = ElggMenuItem::factory($menu_item);
 	}
+	return $return;
+}
+
+function hj_wall_delete_wall_with_file($event, $type, $entity) {
+
+	if ($entity->getSubtype() == 'hjwall') {
+
+		$attachments = elgg_get_entities_from_relationship(array(
+			'relationship' => 'wall_attachment',
+			'relationship_guid' => $entity->guid,
+			'limit' => 0
+		));
+
+		if ($attachments) {
+			foreach ($attachments as $attachment) {
+				$attachment->delete();
+			}
+		}
+
+	}
+
+	return true;
+
+}
+
+function hj_wall_entity_head_menu($hook, $type, $return, $params) {
+
+	if ($params['handler'] != 'hjwall') {
+		return $return;
+	}
+
+	foreach ($return as $key => $item) {
+		if ($item->getName() == 'edit') {
+			unset($return[$key]);
+		}
+	}
+
 	return $return;
 }

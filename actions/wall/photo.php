@@ -50,6 +50,7 @@ if ($wall->save()) {
 	}
 
 	$wall->location = $location;
+	add_entity_relationship($wall->guid, 'wall_attachment', $attachment);
 	$wall->attachment = $attachment;
 
 //	$user->status = $wall->description . hj_wall_get_tags_str($wall);

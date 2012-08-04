@@ -2,6 +2,9 @@
 
 $username = get_input('username');
 $owner = get_user_by_username($username);
+if (!$owner) {
+	forward();
+}
 $limit = get_input('limit', 3);
 $offset = get_input('offset', 0);
 
@@ -9,24 +12,17 @@ $db_prefix = elgg_get_config('dbprefix');
 $data_options = array(
 	'type' => 'object',
 	'subtype' => 'hjwall',
-	'joins' => array(
-						"JOIN {$db_prefix}entity_relationships r1 on r1.guid_two = e.guid",
-						"JOIN {$db_prefix}entity_relationships r2 on r2.guid_two = e.guid"
-			),
-	'wheres' => array(
-					"	(r1.relationship = 'wall_owner' AND r1.guid_one = $owner->guid) OR
-						(r2.relationship = 'tagged_in' AND r2.guid_one = $owner->guid)
-					"
-					),
+	'relationships' => array('wall_owner', 'tagged_in'),
+	'relationship_guid' => $owner->guid,
 	'limit' => $limit,
 	'offset' => $offset,
 	'count' => true
 );
 
-$count = elgg_get_entities($data_options);
+$count = elgg_get_entities_from_relationship($data_options);
 $data_options['count'] = false;
 
-$posts = elgg_get_entities($data_options);
+$posts = elgg_get_entities_from_relationship($data_options);
 
 $target = "hj-list-wall";
 $view_params = array(

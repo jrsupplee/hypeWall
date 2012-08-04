@@ -101,7 +101,7 @@
 		}
 		urlDec = encodeURIComponent(url);
 
-		var $img = $('<img>').attr('src', 'http://api.thumbalizr.com/?url=' + urlDec + '&width=500').attr('alt', '');
+		var $img = $('<img>').attr('src', 'http://api.thumbalizr.com/?url=' + urlDec + '&width=350').attr('alt', '');
 		var $link = $('<a>').attr('href', url).addClass('oembed').attr('target', '_blank').append($img);
 		var $div = $('<div>').css('padding', '10px').css('border-bottom', '1px dashed #e8e8e8').append($link);
 
@@ -111,7 +111,7 @@
 		$("#hj-wall .oembed")
 		.oembed(null,{
 			embedMethod:'fill',
-			maxWidth: 500
+			maxWidth: 350
 		})
 		.addClass("oembed_init");
 
@@ -119,7 +119,7 @@
 
 	hj.wall.base.getImgMarkup = function (url, valid) {
 		if (valid === true) {
-			var $img = $('<img>').attr('src', url).addClass('elgg-photo').attr('alt', '').attr('width', '500');
+			var $img = $('<img>').attr('src', url).addClass('elgg-photo-attachment').attr('alt', '').attr('width', '350');
 			var $link = $('<a>').attr('href', url).attr('target', '_blank').append($img);
 			var $div = $('<div>').css('padding', '10px').css('border-bottom', '1px dashed #e8e8e8').append($link);
 
@@ -165,6 +165,8 @@
 				form.find('.hj-wall-form-attachment').empty();
 				form.find('input[type="file"]').val('');
 				form.find('ul#hj-wall-tags').empty();
+				//form.find('input[type="submit"]').addClass('hidden');
+				//form.find('.hj-wall-status').addClass('hidden');
 				elgg.system_message(elgg.echo('hj:framework:success'));
 				elgg.trigger_hook('success', 'hj:framework:ajax');
 
@@ -197,8 +199,10 @@
 				$('.hj-wall-ajax-loader').hide();
 
 				var $div = $('<div>').css('padding', '10px').css('border-bottom', '1px dashed #e8e8e8').append(output.output.data);
+				$div.find('.hj-hover-menu-block').hide();
 				form.find('.hj-wall-form-attachment').html($div);
 				form.find('input[type="submit"]').removeClass('hidden');
+				form.find('.hj-wall-status').removeClass('hidden');
 				elgg.trigger_hook('success', 'hj:framework:ajax');
 				elgg.system_message(elgg.echo('hj:framework:success'));
 			},

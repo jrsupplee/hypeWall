@@ -1,4 +1,7 @@
 <?php
+
+elgg_load_css('hj.framework.jquitheme');
+
 if (isset($vars['class'])) {
 	$vars['class'] = "hj-wall-tags-autocomplete {$vars['class']}";
 } else {

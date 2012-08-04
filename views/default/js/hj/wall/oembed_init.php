@@ -11,6 +11,7 @@
 			embedMethod:'fill',
 			maxWidth: 500
 		})
+		.removeClass("oembed")
 		.addClass("oembed_init");
 	}
 

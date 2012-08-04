@@ -21,7 +21,7 @@ if (!empty($file['name'])) {
 		$filefolder->data_pattern = hj_framework_get_data_pattern('object', 'hjfilefolder');
 		$filefolder->owner_guid = elgg_get_logged_in_user_guid();
 		$filefolder->container_guid = elgg_get_logged_in_user_guid();
-		$filefolder->access_id = ACCESS_DEFAULT;
+		$filefolder->access_id = ACCESS_PUBLIC;
 		$filefolder->save();
 
 		hj_framework_set_entity_priority($filefolder);
