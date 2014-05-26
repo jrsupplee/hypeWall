@@ -64,8 +64,10 @@ function init() {
 	elgg_extend_view('page/layouts/content/filter', 'framework/wall/container', 100);
 
 	// Load fonts
+	elgg_unextend_view('page/elements/head', 'framework/fonts/font-awesome');
 	elgg_extend_view('page/elements/head', 'framework/fonts/font-awesome');
-	elgg_extend_view('page/elements/head', 'framework/fonts/open-sans');
+	elgg_unextend_view('page/elements/head', 'framework/fonts/font-awesome');
+	elgg_extend_view('page/elements/head', 'framework/fonts/font-awesome');
 
 	// Add User Location to config
 	elgg_extend_view('js/initialize_elgg', 'js/framework/wall/config');
